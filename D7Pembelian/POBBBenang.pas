@@ -649,6 +649,36 @@ type
     QRefreshStatusPO: TOracleQuery;
     QRLabel74: TQRLabel;
     QBrowsePPN2: TStringField;
+    LookItem: TwwDBLookupComboDlg;
+    QLookItem2: TOracleDataSet;
+    QLookItem2KD_ITEM: TStringField;
+    QLookItem2KD_JNS_ITEM: TStringField;
+    QLookItem2KD_KEL: TStringField;
+    QLookItem2KD_BENANG: TStringField;
+    QLookItem2KD_KONSTRUKSI: TStringField;
+    QLookItem2KD_CORAK: TStringField;
+    QLookItem2KD_MERK: TStringField;
+    QLookItem2KD_KEMASAN: TStringField;
+    QLookItem2KD_SUPLIER: TStringField;
+    QLookItem2NAMA_ITEM: TStringField;
+    QLookItem2KD_SATUAN: TStringField;
+    QLookItem2TGL_INSERT: TDateTimeField;
+    QLookItem2OPR_INSERT: TStringField;
+    QLookItem2NO_PART: TStringField;
+    QLookItem2TLR_PSN: TFloatField;
+    QLookItem2TLR_QTY: TFloatField;
+    QLookItem2NO_BENANG: TFloatField;
+    QLookItem2RASIO: TFloatField;
+    QLookItem2KD_ITEM_ACC: TIntegerField;
+    QLookItem2ICC: TStringField;
+    QLookItem2LAST_CC: TDateTimeField;
+    QLookItem2QTY: TFloatField;
+    QLookItem2TGL_EDIT: TDateTimeField;
+    QLookItem2OPR_EDIT: TStringField;
+    QLookItem2KD_ITEM_LAMA: TStringField;
+    QLookItem2MIN_STOK: TFloatField;
+    QLookItem2MAX_STOK: TFloatField;
+    QDetailQTY_KG: TFloatField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure wwDBGrid1TitleButtonClick(Sender: TObject;
@@ -771,10 +801,14 @@ type
       var PrintBand: Boolean);
     procedure BitBtn6Click(Sender: TObject);
     procedure QBrowseCalcFields(DataSet: TDataSet);
+    procedure LookItemEnter(Sender: TObject);
+    procedure LookItemCloseUp(Sender: TObject; LookupTable,
+      FillTable: TDataSet; modified: Boolean);
   private
     { Private declarations }
     vfilter, vorder, vfilter2 : String;
     vdpp, vppn, vtotal : Real;
+    vtemp_dpp, vtemp_ppn, vtemp_harga, vtemp_subtotal, vtemp_disc : Real;
     vfirst_page : Boolean;
   public
     { Public declarations }
@@ -881,18 +915,15 @@ end;
 procedure TPOBBBenangFrm.wwDBGrid2Enter(Sender: TObject);
 begin
   if QTransaksi.State<>dsBrowse then
-        try
-          QTransaksi.Post;
-        except
-            on E : Exception do
-            begin
-              ShowMessage(E.Message);
-            end;
+     try
+        QTransaksi.Post;
+     except
+        on E : Exception do
+        begin
+          ShowMessage(E.Message);
         end;
- { if QTransaksiISPOST.AsString='1' then
-     wwDBGrid2.Options:=wwDBGrid2.Options+[dgRowSelect]
-     else     }//Azmi 
-     wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect];
+     end;
+  wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect];
 end;
 
 procedure TPOBBBenangFrm.QTransaksiNewRecord(DataSet: TDataSet);
@@ -935,7 +966,7 @@ begin
   QTransaksiTTD2.AsString:=QJnsTransaksiTTD2.AsString+'; '+QJnsTransaksiJAB2.AsString;
 //  QTransaksiTTD3.AsString:=QJnsTransaksiTTD3.AsString+'; '+QJnsTransaksiJAB3.AsString;
   QTransaksiTTD4.AsString:=QJnsTransaksiTTD4.AsString+'; '+QJnsTransaksiJAB4.AsString;
-  QTransaksiISPUSAT.AsString:='P';
+  QTransaksiISPUSAT.AsString:='W';
   LookSuplier.SetFocus;
   Label20.Caption:='';
 end;
@@ -1587,6 +1618,7 @@ end;
 procedure TPOBBBenangFrm.QDetailBeforePost(DataSet: TDataSet);
 begin
   QDetailOPR_UPDATE.AsString:=DMFrm.QUserNAMA_USER.AsString;
+  QDetailQTY_KG.AsFloat:=QDetailQTY_PO.AsFloat;
 end;
 
 procedure TPOBBBenangFrm.BtnFormulasiClick(Sender: TObject);
@@ -1707,10 +1739,17 @@ end;
 
 procedure TPOBBBenangFrm.QDetailNewRecord(DataSet: TDataSet);
 begin
-//  QDetailISPILIH.AsString:='1';
-{azmi}
+  //QDetailISPILIH.AsString:='1';
+  {azmi}
   QDetailISPILIH.AsString:='0';
-{azmi}
+  {azmi}
+
+  QDetailISPILIH.AsString:='0';
+  QDetailSTATUS2.AsString:='OPEN';
+  QDetailHARGA.AsFloat:=0;
+  QDetailQTY_PO.AsFloat:=0;
+  QDetailDISC.AsFloat:=0;
+  QDetailSATUAN_PO.AsString:='KG';
 end;
 
 procedure TPOBBBenangFrm.wwDBGrid2UpdateFooter(Sender: TObject);
@@ -1736,17 +1775,18 @@ begin
      QRShape4.Enabled:=False;
      QRShape5.Enabled:=False;
      QRBand1.Height:=150;
-{azmi}
-QRLTOTAL.Enabled:=True;
-QRLTOTAL2.Enabled:=True;
-QRShape3.Enabled:=True;
-QRShape4.Enabled:=True;
-QRLTOT.Enabled:=False;
-QRLTOT2.Enabled:=False;
-vtotal:=vtotal-QTransaksiUM.AsFloat-QTransaksiDISKON.AsFloat+QTransaksiBY_LAIN2.AsFloat;
-QRLTOTAL.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vtotal);
-QRLTOT.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vtotal);
-{azmi}
+
+     {azmi}
+     QRLTOTAL.Enabled:=True;
+     QRLTOTAL2.Enabled:=True;
+     QRShape3.Enabled:=True;
+     QRShape4.Enabled:=True;
+     QRLTOT.Enabled:=False;
+     QRLTOT2.Enabled:=False;
+     vtotal:=vtotal-QTransaksiUM.AsFloat-QTransaksiDISKON.AsFloat+QTransaksiBY_LAIN2.AsFloat;
+     QRLTOTAL.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vtotal);
+     QRLTOT.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vtotal);
+     {azmi}
   end
   else if (QTransaksiPPN.AsString='EXC') OR (QTransaksiPPN.AsString='E11') then
   begin
@@ -1760,13 +1800,13 @@ QRLTOT.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vtotal);
      QRShape4.Enabled:=True;
      QRShape5.Enabled:=True;
      QRBand1.Height:=150;
-{azmi}
-QRLTOT.Enabled:=True;
-QRLTOT2.Enabled:=True;
-vdpp:=vdpp;
-vtotal:=vtotal-QTransaksiUM.AsFloat-QTransaksiDISKON.AsFloat+QTransaksiBY_LAIN2.AsFloat;
-QRLTOT.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vdpp+vppn);
-{azmi}
+     {azmi}
+     QRLTOT.Enabled:=True;
+     QRLTOT2.Enabled:=True;
+     vdpp:=vdpp;
+     vtotal:=vtotal-QTransaksiUM.AsFloat-QTransaksiDISKON.AsFloat+QTransaksiBY_LAIN2.AsFloat;
+     QRLTOT.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vdpp+vppn);
+     {azmi}
      QRLDPP2.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vdpp);
      QRLPPN.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vppn);
      QRLTOTAL.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vtotal);
@@ -1783,13 +1823,13 @@ QRLTOT.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vdpp+vppn);
      QRShape4.Enabled:=True;
      QRShape5.Enabled:=True;
      QRBand1.Height:=150;
-{azmi}
-QRLTOT.Enabled:=True;
-QRLTOT2.Enabled:=True;
-vdpp:=vdpp;
-vtotal:=vtotal-QTransaksiUM.AsFloat-QTransaksiDISKON.AsFloat+QTransaksiBY_LAIN2.AsFloat;
-QRLTOT.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vdpp+vppn);
-{azmi}     
+     {azmi}
+     QRLTOT.Enabled:=True;
+     QRLTOT2.Enabled:=True;
+     vdpp:=vdpp;
+     vtotal:=vtotal-QTransaksiUM.AsFloat-QTransaksiDISKON.AsFloat+QTransaksiBY_LAIN2.AsFloat;
+     QRLTOT.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vdpp+vppn);
+     {azmi}
      QRLDPP2.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vdpp);
      QRLPPN.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vppn);
      QRLTOTAL.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vtotal);
@@ -1879,6 +1919,7 @@ end;
 
 procedure TPOBBBenangFrm.QSuplierBeforeOpen(DataSet: TDataSet);
 begin
+  {
   if QJnsTransaksiKD_TRANSAKSI.AsString='301' then
     QSuplier.SetVariable('myparam','pmtx02.vsuplier_po_benang')
     else
@@ -1890,6 +1931,9 @@ begin
     else
   if QJnsTransaksiKD_TRANSAKSI.AsString='304' then
     QSuplier.SetVariable('myparam','pmtx02.vsuplier_po_nbb');
+  }
+
+  if QJnsTransaksiKD_TRANSAKSI.AsString='301' then QSuplier.SetVariable('myparam','pmtx01.vsuplier_all');
 end;
 
 procedure TPOBBBenangFrm.wwDBGrid1URLOpen(Sender: TObject;
@@ -2107,7 +2151,6 @@ begin
       ShowMessage('Maaf, data sudah di-POSTING, tidak bisa diubah !');
       Abort;
   end;
-
 end;
 
 procedure TPOBBBenangFrm.LookPPNChange(Sender: TObject);
@@ -2528,6 +2571,20 @@ begin
   end
   else
     QBrowsePPN2.AsString:=QBrowsePPN.AsString;
+end;
+
+procedure TPOBBBenangFrm.LookItemEnter(Sender: TObject);
+begin
+  QLookItem2.Close;
+  QLookItem2.Open;
+end;
+
+procedure TPOBBBenangFrm.LookItemCloseUp(Sender: TObject; LookupTable,
+  FillTable: TDataSet; modified: Boolean);
+begin
+  QDetailKETERANGAN.AsString:=QLookItem2NAMA_ITEM.AsString;
+  QDetailSTATUS.AsString:='PO';
+  QDetailSTATUS.AsString:='OPEN';
 end;
 
 end.

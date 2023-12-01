@@ -552,8 +552,6 @@ type
     QRLBY: TQRDBText;
     QRGroup1: TQRGroup;
     QTransaksiISPUSAT: TStringField;
-    QRImage3: TQRImage;
-    QRImage4: TQRImage;
     wwDBComboBox3: TwwDBComboBox;
     QCaraBayar: TOracleDataSet;
     QCaraBayarNO_REG_PO: TIntegerField;
@@ -639,7 +637,6 @@ type
     QRLabel107: TQRLabel;
     QRDBText69: TQRDBText;
     QRLabel108: TQRLabel;
-    QRImage5: TQRImage;
     QRBand17: TQRBand;
     QRLabel110: TQRLabel;
     QRLabel111: TQRLabel;

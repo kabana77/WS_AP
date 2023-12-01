@@ -1,6 +1,6 @@
 object LPBNBBFrm: TLPBNBBFrm
-  Left = 326
-  Top = 49
+  Left = 327
+  Top = 51
   Width = 910
   Height = 678
   ActiveControl = GroupBox1

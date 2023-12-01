@@ -1,6 +1,6 @@
 object NotaJasaFrm: TNotaJasaFrm
-  Left = 207
-  Top = 78
+  Left = 309
+  Top = 96
   Width = 1108
   Height = 660
   Caption = 'Nota Jasa'
@@ -104,9 +104,9 @@ object NotaJasaFrm: TNotaJasaFrm
             1902.354166666667000000)
           BandType = rbTitle
           object QRLabel15: TQRLabel
-            Left = 293
+            Left = 275
             Top = 80
-            Width = 133
+            Width = 169
             Height = 24
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -115,9 +115,9 @@ object NotaJasaFrm: TNotaJasaFrm
             Frame.DrawRight = False
             Size.Values = (
               63.500000000000000000
-              775.229166666666700000
+              727.604166666666700000
               211.666666666666700000
-              351.895833333333300000)
+              447.145833333333300000)
             Alignment = taCenter
             AlignToBand = True
             AutoSize = True
@@ -2681,9 +2681,9 @@ object NotaJasaFrm: TNotaJasaFrm
             1902.354166666667000000)
           BandType = rbTitle
           object QRLTitle2: TQRLabel
-            Left = 284
+            Left = 264
             Top = 24
-            Width = 151
+            Width = 190
             Height = 24
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -2692,9 +2692,9 @@ object NotaJasaFrm: TNotaJasaFrm
             Frame.DrawRight = False
             Size.Values = (
               63.500000000000000000
-              751.416666666666700000
+              698.500000000000000000
               63.500000000000000000
-              399.520833333333300000)
+              502.708333333333300000)
             Alignment = taCenter
             AlignToBand = True
             AutoSize = True
@@ -2899,9 +2899,9 @@ object NotaJasaFrm: TNotaJasaFrm
             FontSize = 8
           end
           object QRExpr4: TQRExpr
-            Left = 549
+            Left = 512
             Top = 0
-            Width = 168
+            Width = 205
             Height = 24
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -2910,9 +2910,9 @@ object NotaJasaFrm: TNotaJasaFrm
             Frame.DrawRight = False
             Size.Values = (
               63.500000000000000000
-              1452.562500000000000000
+              1354.666666666667000000
               0.000000000000000000
-              444.500000000000000000)
+              542.395833333333300000)
             Alignment = taRightJustify
             AlignToBand = False
             AutoSize = True

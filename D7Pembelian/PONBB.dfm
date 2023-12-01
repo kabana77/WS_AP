@@ -1,6 +1,6 @@
 object PONBBFrm: TPONBBFrm
-  Left = 320
-  Top = 110
+  Left = 315
+  Top = 111
   Width = 1142
   Height = 637
   Caption = 'Purchase Order'

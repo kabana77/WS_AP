@@ -2,8 +2,8 @@ object DMFrm: TDMFrm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 769
-  Top = 146
+  Left = 476
+  Top = 77
   Height = 673
   Width = 1027
   object OL: TOracleLogon

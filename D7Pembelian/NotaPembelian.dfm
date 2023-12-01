@@ -1,6 +1,6 @@
 object NotaPembelianFrm: TNotaPembelianFrm
-  Left = 438
-  Top = 211
+  Left = 267
+  Top = 76
   Width = 1176
   Height = 674
   Caption = 'Nota Pembayaran'

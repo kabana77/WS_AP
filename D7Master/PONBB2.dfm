@@ -1,8 +1,8 @@
 object PONBB2Frm: TPONBB2Frm
-  Left = 552
-  Top = 186
+  Left = 108
+  Top = 0
   Width = 1289
-  Height = 754
+  Height = 728
   Caption = 'Purchase Order'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,7 +24,7 @@ object PONBB2Frm: TPONBB2Frm
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
-    Top = 649
+    Top = 623
     Width = 1273
     Height = 66
     Align = alBottom
@@ -188,7 +188,7 @@ object PONBB2Frm: TPONBB2Frm
     Left = 0
     Top = 41
     Width = 1273
-    Height = 608
+    Height = 582
     ActivePage = TabSheet1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -7282,7 +7282,7 @@ object PONBB2Frm: TPONBB2Frm
         Left = 0
         Top = 52
         Width = 1265
-        Height = 528
+        Height = 502
         Align = alClient
         Caption = 'SILAHKAN TUNGGU, PROSES EXPORT MASIH BERLANGSUNG'
         Color = clSkyBlue
@@ -7528,7 +7528,7 @@ object PONBB2Frm: TPONBB2Frm
         Left = 0
         Top = 52
         Width = 1265
-        Height = 528
+        Height = 502
         ControlType.Strings = (
           'ISPOST;CheckBox;1;0'
           'STATUS;URL-Link')
@@ -8429,7 +8429,7 @@ object PONBB2Frm: TPONBB2Frm
       end
       object Panel6: TPanel
         Left = 0
-        Top = 536
+        Top = 510
         Width = 1265
         Height = 44
         Align = alBottom
@@ -8779,7 +8779,7 @@ object PONBB2Frm: TPONBB2Frm
         Left = 0
         Top = 218
         Width = 1265
-        Height = 318
+        Height = 292
         ControlType.Strings = (
           'ISPILIH;CheckBox;1;0'
           'STATUS2;CheckBox;CLOSE;OPEN')
@@ -12326,7 +12326,7 @@ object PONBB2Frm: TPONBB2Frm
         Left = 0
         Top = 52
         Width = 1265
-        Height = 528
+        Height = 502
         Align = alClient
         Caption = 'SILAHKAN TUNGGU, PROSES EXPORT MASIH BERLANGSUNG'
         Color = clSkyBlue
@@ -12525,7 +12525,7 @@ object PONBB2Frm: TPONBB2Frm
         Left = 0
         Top = 52
         Width = 1265
-        Height = 528
+        Height = 502
         Selected.Strings = (
           'NO_NOTA'#9'15'#9'NOMER PO'#9'F'
           'TANGGAL'#9'12'#9'TANGGAL'#9'F'#9
@@ -12582,7 +12582,7 @@ object PONBB2Frm: TPONBB2Frm
         Left = 0
         Top = 52
         Width = 1265
-        Height = 528
+        Height = 502
         ControlType.Strings = (
           'ISPOST;CheckBox;1;0'
           'STATUS;URL-Link')

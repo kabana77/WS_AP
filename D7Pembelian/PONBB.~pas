@@ -478,7 +478,6 @@ type
     QRLabel46: TQRLabel;
     QRDBText53: TQRDBText;
     QRExpr13: TQRExpr;
-    QRImage3: TQRImage;
     QRDBText54: TQRDBText;
     QRLabel47: TQRLabel;
     QRLabel48: TQRLabel;
@@ -576,7 +575,6 @@ type
     QRLabel107: TQRLabel;
     QRDBText71: TQRDBText;
     QRLabel108: TQRLabel;
-    QRImage5: TQRImage;
     QRBand17: TQRBand;
     QRLabel110: TQRLabel;
     QRLabel111: TQRLabel;

@@ -1,5 +1,5 @@
 #########################################################
-## Ini adalah sc aplikasi Kabana1 (pembelian, rm & AP) ##
+## Ini adalah sc aplikasi Wastra1 (pembelian, rm & AP) ##
 #########################################################
 
 $$$

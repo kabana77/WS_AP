@@ -1,6 +1,6 @@
 object BAJasa2Frm: TBAJasa2Frm
-  Left = 559
-  Top = 245
+  Left = 187
+  Top = 55
   Width = 1233
   Height = 689
   ActiveControl = GroupBox1

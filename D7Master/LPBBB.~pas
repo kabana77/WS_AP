@@ -353,8 +353,6 @@ type
     QCekSATSATUAN_PO: TStringField;
     QAmbilNotaKG: TOracleQuery;
     QTransaksiISPUSAT: TStringField;
-    QRImage2: TQRImage;
-    QRImage1: TQRImage;
     QRLabel29: TQRLabel;
     QItemBBR: TOracleDataSet;
     QItemBBRKD_BENANG: TStringField;
@@ -661,7 +659,7 @@ begin
               // nota ppn
               DMFrm.FNo_Nota_PMTX02.SetVariable('pispjk',QTransaksiISPJK.AsString);
               DMFrm.FNo_Nota_PMTX02.SetVariable('ptgl',QTransaksiTANGGAL.AsDateTime);
-              DMFrm.FNo_Nota_PMTX02.SetVariable('pispusat','P');
+              DMFrm.FNo_Nota_PMTX02.SetVariable('pispusat','W');
               DMFrm.FNo_Nota_PMTX02.Open;
               QTransaksiNO_NOTA.AsString:=DMFrm.FNo_Nota_PMTX02NO_NOTA.AsString;
           end;

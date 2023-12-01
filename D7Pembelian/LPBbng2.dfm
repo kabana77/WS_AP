@@ -1,6 +1,6 @@
 object LPBbng2Frm: TLPBbng2Frm
-  Left = 275
-  Top = 93
+  Left = 277
+  Top = 0
   Width = 1098
   Height = 728
   ActiveControl = GroupBox1

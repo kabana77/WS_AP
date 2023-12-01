@@ -259,8 +259,6 @@ type
     B09ObatKlinik1: TMenuItem;
     V09ObatKlinik1: TMenuItem;
     ObatKlinik4: TMenuItem;
-    A42: TMenuItem;
-    A52: TMenuItem;
     NilaiPersediaan1: TMenuItem;
     BenangGrey11: TMenuItem;
     BahanKimia11: TMenuItem;
@@ -2123,6 +2121,20 @@ begin
 //  KebutuhanNBBFrm.wwDBGrid2.IniAttributes.SectionName:=KebutuhanNBBFrm.Caption+KebutuhanNBBFrm.wwDBGrid2.Name;
 //  PONBBFrm.vkd_jns_pp:='204';
   POBBBenangFrm.Show;  }
+
+  If CheckBox1.Checked then
+  begin
+     CheckBox1.Checked:=False;
+     CheckBox1Click(Nil);
+  end;
+  POBBBenangFrm:=TPOBBBenangFrm.Create(Application);
+  POBBBenangFrm.vhak_input:=(Sender as TMenuItem).Checked;
+  POBBBenangFrm.QJnsTransaksi.Close;
+  POBBBenangFrm.QJnsTransaksi.SetVariable('kd_transaksi','301');
+  POBBBenangFrm.QJnsTransaksi.Open;
+  POBBBenangFrm.Caption:=POBBBenangFrm.QJnsTransaksiNAMA_TRANSAKSI.AsString;
+  POBBBenangFrm.vkdjns_pp:='201';
+  POBBBenangFrm.Show;
 end;
 
 procedure TMainFrm.LPBLainnya1Click(Sender: TObject);

@@ -951,7 +951,8 @@ QTransaksiKD_TRANSAKSI.AsString:=QJnsTransaksiKD_TRANSAKSI.AsString;
       begin
           DMFrm.FNo_Nota_PMTSBY.Close;
           DMFrm.FNo_Nota_PMTSBY.SetVariable('pkode',QTransaksiKD_TRANSAKSI.AsString);
-          DMFrm.FNo_Nota_PMTSBY.SetVariable('pispusat',QTransaksiISPUSAT.AsString);
+          //DMFrm.FNo_Nota_PMTSBY.SetVariable('pispusat',QTransaksiISPUSAT.AsString);
+          DMFrm.FNo_Nota_PMTSBY.SetVariable('pispusat','W');
           DMFrm.FNo_Nota_PMTSBY.SetVariable('pispjk',QTransaksiISPJK.AsString);
           DMFrm.FNo_Nota_PMTSBY.SetVariable('ptgl',QTransaksiTANGGAL.AsDateTime);
           DMFrm.FNo_Nota_PMTSBY.Open;

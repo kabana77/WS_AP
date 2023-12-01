@@ -324,8 +324,6 @@ type
     QTransaksiISPUSAT: TStringField;
     QRLTelepon: TQRLabel;
     QRLAlamat: TQRLabel;
-    QRImage2: TQRImage;
-    QRImage1: TQRImage;
     wwDBGrid4: TwwDBGrid;
     QDetailKD_ITEM2: TStringField;
     LookItem: TwwDBLookupComboDlg;
@@ -346,7 +344,6 @@ type
     QRLabel7: TQRLabel;
     QRLabel23: TQRLabel;
     QRLabel25: TQRLabel;
-    QRImage3: TQRImage;
     QRBand5: TQRBand;
     QRLabel28: TQRLabel;
     QRExpr5: TQRExpr;
@@ -699,7 +696,8 @@ begin
         //  DMFrm.FNo_Nota_PMTX02.SetVariable('pispjk',QTransaksiISPJK.AsString);
           DMFrm.FNo_Nota_PMTX02.SetVariable('pispjk',QTransaksiISPJK.AsString);
           DMFrm.FNo_Nota_PMTX02.SetVariable('ptgl',QTransaksiTANGGAL.AsDateTime);
-          DMFrm.FNo_Nota_PMTX02.SetVariable('pispusat',QTransaksiISPUSAT.AsString);     
+          //DMFrm.FNo_Nota_PMTX02.SetVariable('pispusat',QTransaksiISPUSAT.AsString);
+          DMFrm.FNo_Nota_PMTX02.SetVariable('pispusat','W');     
           DMFrm.FNo_Nota_PMTX02.Open;
           QTransaksiNO_NOTA.AsString:=DMFrm.FNo_Nota_PMTX02NO_NOTA.AsString;
       end;

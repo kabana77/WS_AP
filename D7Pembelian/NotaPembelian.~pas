@@ -2158,7 +2158,7 @@ var
   vsql : String;
 begin
 // vLokStat:=copy(ENoNota.Text,11,1);
-  if QTransaksiISPUSAT.AsString='P' then
+  if QTransaksiISPUSAT.AsString='W' then
   begin
 
     {if QTransaksiPPN.AsString='-' then
@@ -2231,7 +2231,7 @@ var
 begin
 vkode := ''''+'502'+'''';
 //showmessage(QTransaksiISPUSAT.AsString);
-  if QTransaksiISPUSAT.AsString='P' then
+  if QTransaksiISPUSAT.AsString='W' then
   begin
     QPMTSBY.Close;
     QPMTSBY.SQL.Text:='select a.*, a.rowid from pmtx01.perusahaan a';

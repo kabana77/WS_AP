@@ -402,9 +402,6 @@ type
     QTransaksiOPR2: TStringField;
     QTransaksiTGL_INSERT2: TDateTimeField;
     QTransaksiISPUSAT: TStringField;
-    QRImage2: TQRImage;
-    QRImage3: TQRImage;
-    QRImage1: TQRImage;
     QDetailKD_ASET: TStringField;
     QDetailDISKRIPSI: TStringField;
     QRLabel28: TQRLabel;

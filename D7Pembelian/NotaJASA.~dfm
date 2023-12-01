@@ -6168,8 +6168,8 @@ object NotaJasaFrm: TNotaJasaFrm
             'NONE'#9'-'
             'INC 10%'#9'INC'
             'EXC 10%'#9'EXC'
-            'INC 11%'#9'INC'
-            'EXC 11%'#9'EXC')
+            'INC 11%'#9'I11'
+            'EXC 11%'#9'E11')
           ParentFont = False
           ReadOnly = True
           Sorted = False
